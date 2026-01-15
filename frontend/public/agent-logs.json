@@ -1,399 +1,399 @@
 [
   {
-    "id": "srlx9dy",
-    "timestamp": "2026-01-15T23:11:02.029Z",
+    "id": "wvzxs1y",
+    "timestamp": "2026-01-15T23:25:02.008Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "p3o1fa7",
-    "timestamp": "2026-01-15T23:11:02.016Z",
+    "id": "pl6xw2a",
+    "timestamp": "2026-01-15T23:25:01.993Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "36hq8h9",
-    "timestamp": "2026-01-15T23:11:02.000Z",
+    "id": "5cez9oe",
+    "timestamp": "2026-01-15T23:25:01.981Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "6fmds1v",
-    "timestamp": "2026-01-15T23:11:01.982Z",
+    "id": "ct8qcpf",
+    "timestamp": "2026-01-15T23:25:01.969Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "dhmya4g",
-    "timestamp": "2026-01-15T23:11:01.969Z",
+    "id": "gmcw202",
+    "timestamp": "2026-01-15T23:25:01.954Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "hhvnfto",
-    "timestamp": "2026-01-15T23:11:01.951Z",
+    "id": "lfmvi9k",
+    "timestamp": "2026-01-15T23:25:01.939Z",
     "programId": 2,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "6er82kv",
-    "timestamp": "2026-01-15T23:11:01.936Z",
+    "id": "z33divh",
+    "timestamp": "2026-01-15T23:25:01.924Z",
     "programId": 1,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 9.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "y6oxq7h",
-    "timestamp": "2026-01-15T23:11:01.921Z",
+    "id": "k8h6gus",
+    "timestamp": "2026-01-15T23:25:01.911Z",
     "programId": 0,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "1bw8p3n",
-    "timestamp": "2026-01-15T23:11:01.904Z",
+    "id": "etncm89",
+    "timestamp": "2026-01-15T23:25:01.892Z",
     "programId": -1,
     "type": "info",
     "message": "Steward cycle started",
     "description": "AI Steward is scanning for new programs and evaluating submissions."
   },
   {
-    "id": "wvrdvbh",
-    "timestamp": "2026-01-15T23:10:45.961Z",
+    "id": "v6y3xt5",
+    "timestamp": "2026-01-15T23:24:46.273Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "150l7yw",
-    "timestamp": "2026-01-15T23:10:45.947Z",
+    "id": "34p38zy",
+    "timestamp": "2026-01-15T23:24:46.257Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "alla4dc",
-    "timestamp": "2026-01-15T23:10:45.935Z",
+    "id": "x9ebimi",
+    "timestamp": "2026-01-15T23:24:46.244Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "lnm5nva",
-    "timestamp": "2026-01-15T23:10:45.920Z",
+    "id": "f8h8n4z",
+    "timestamp": "2026-01-15T23:24:46.231Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "q148n5p",
-    "timestamp": "2026-01-15T23:10:45.906Z",
+    "id": "qk9f5ji",
+    "timestamp": "2026-01-15T23:24:46.217Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "9d9wjfl",
-    "timestamp": "2026-01-15T23:10:45.892Z",
+    "id": "9h2a5i2",
+    "timestamp": "2026-01-15T23:24:46.201Z",
     "programId": 2,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "tt4kebx",
-    "timestamp": "2026-01-15T23:10:45.880Z",
+    "id": "7bx0nls",
+    "timestamp": "2026-01-15T23:24:46.186Z",
     "programId": 1,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 9.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "8i1wuwo",
-    "timestamp": "2026-01-15T23:10:45.869Z",
+    "id": "h91v4ex",
+    "timestamp": "2026-01-15T23:24:46.170Z",
     "programId": 0,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "1qzuhwu",
-    "timestamp": "2026-01-15T23:10:45.854Z",
+    "id": "5ue61hf",
+    "timestamp": "2026-01-15T23:24:46.150Z",
     "programId": -1,
     "type": "info",
     "message": "Steward cycle started",
     "description": "AI Steward is scanning for new programs and evaluating submissions."
   },
   {
-    "id": "18ket1b",
-    "timestamp": "2026-01-15T23:10:02.014Z",
+    "id": "t8urunr",
+    "timestamp": "2026-01-15T23:24:02.017Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "fjilb7z",
-    "timestamp": "2026-01-15T23:10:01.997Z",
+    "id": "fzdk560",
+    "timestamp": "2026-01-15T23:24:02.004Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "5svcvlj",
-    "timestamp": "2026-01-15T23:10:01.975Z",
+    "id": "xp22ced",
+    "timestamp": "2026-01-15T23:24:01.988Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "0zsz7w4",
-    "timestamp": "2026-01-15T23:10:01.959Z",
+    "id": "vman7cm",
+    "timestamp": "2026-01-15T23:24:01.973Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "znaa5jd",
-    "timestamp": "2026-01-15T23:10:01.939Z",
+    "id": "w67t6w2",
+    "timestamp": "2026-01-15T23:24:01.957Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "kqi95bn",
-    "timestamp": "2026-01-15T23:10:01.923Z",
+    "id": "n2aqmqc",
+    "timestamp": "2026-01-15T23:24:01.943Z",
     "programId": 2,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "vg83dt5",
-    "timestamp": "2026-01-15T23:10:01.905Z",
+    "id": "plkkse5",
+    "timestamp": "2026-01-15T23:24:01.927Z",
     "programId": 1,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 9.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "is3xx8m",
-    "timestamp": "2026-01-15T23:10:01.889Z",
+    "id": "vgtbjpo",
+    "timestamp": "2026-01-15T23:24:01.912Z",
     "programId": 0,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "qrd41q6",
-    "timestamp": "2026-01-15T23:10:01.869Z",
+    "id": "wofw844",
+    "timestamp": "2026-01-15T23:24:01.892Z",
     "programId": -1,
     "type": "info",
     "message": "Steward cycle started",
     "description": "AI Steward is scanning for new programs and evaluating submissions."
   },
   {
-    "id": "9t005td",
-    "timestamp": "2026-01-15T23:09:46.057Z",
+    "id": "rbhktwm",
+    "timestamp": "2026-01-15T23:23:56.384Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "crjvrx5",
-    "timestamp": "2026-01-15T23:09:46.041Z",
+    "id": "en2djkv",
+    "timestamp": "2026-01-15T23:23:56.369Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "rltlzjv",
-    "timestamp": "2026-01-15T23:09:46.025Z",
+    "id": "lrh2sm9",
+    "timestamp": "2026-01-15T23:23:56.355Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "p241ijy",
-    "timestamp": "2026-01-15T23:09:46.010Z",
+    "id": "em6qncm",
+    "timestamp": "2026-01-15T23:23:56.341Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "12lzx6g",
-    "timestamp": "2026-01-15T23:09:45.988Z",
+    "id": "5ykikj7",
+    "timestamp": "2026-01-15T23:23:56.329Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "wrvu9i4",
-    "timestamp": "2026-01-15T23:09:45.973Z",
+    "id": "sjmgtdk",
+    "timestamp": "2026-01-15T23:23:56.311Z",
     "programId": 2,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "j0suuzh",
-    "timestamp": "2026-01-15T23:09:45.958Z",
+    "id": "9iostvg",
+    "timestamp": "2026-01-15T23:23:56.296Z",
     "programId": 1,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 9.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "ljegv6o",
-    "timestamp": "2026-01-15T23:09:45.940Z",
+    "id": "0c5ae6q",
+    "timestamp": "2026-01-15T23:23:56.280Z",
     "programId": 0,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "ak3wvyy",
-    "timestamp": "2026-01-15T23:09:45.898Z",
+    "id": "t4r1zp4",
+    "timestamp": "2026-01-15T23:23:56.263Z",
     "programId": -1,
     "type": "info",
     "message": "Steward cycle started",
     "description": "AI Steward is scanning for new programs and evaluating submissions."
   },
   {
-    "id": "3a919fs",
-    "timestamp": "2026-01-15T23:09:02.259Z",
+    "id": "bckgkjl",
+    "timestamp": "2026-01-15T23:23:12.858Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "y1oqerc",
-    "timestamp": "2026-01-15T23:09:02.234Z",
+    "id": "c9e0tyb",
+    "timestamp": "2026-01-15T23:23:12.845Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "x5wr7u9",
-    "timestamp": "2026-01-15T23:09:02.214Z",
+    "id": "r7tia5a",
+    "timestamp": "2026-01-15T23:23:12.823Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "wrgup0p",
-    "timestamp": "2026-01-15T23:09:02.195Z",
+    "id": "n9qydta",
+    "timestamp": "2026-01-15T23:23:12.806Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "83dwncn",
-    "timestamp": "2026-01-15T23:09:02.177Z",
+    "id": "5h0tydp",
+    "timestamp": "2026-01-15T23:23:12.786Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "zckes7b",
-    "timestamp": "2026-01-15T23:09:02.157Z",
+    "id": "mfaem7e",
+    "timestamp": "2026-01-15T23:23:12.773Z",
     "programId": 2,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "celctko",
-    "timestamp": "2026-01-15T23:09:02.138Z",
+    "id": "gbwand1",
+    "timestamp": "2026-01-15T23:23:12.759Z",
     "programId": 1,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 9.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "jujjr8y",
-    "timestamp": "2026-01-15T23:09:02.117Z",
+    "id": "23gp1sf",
+    "timestamp": "2026-01-15T23:23:12.739Z",
     "programId": 0,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 3 recipients for a total of 900.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "sjusy0y",
-    "timestamp": "2026-01-15T23:09:02.076Z",
+    "id": "z197a4z",
+    "timestamp": "2026-01-15T23:23:12.709Z",
     "programId": -1,
     "type": "info",
     "message": "Steward cycle started",
     "description": "AI Steward is scanning for new programs and evaluating submissions."
   },
   {
-    "id": "vkdqmhh",
-    "timestamp": "2026-01-15T23:08:52.191Z",
+    "id": "zghtbxs",
+    "timestamp": "2026-01-15T23:22:48.995Z",
     "programId": 7,
     "type": "decision",
     "message": "Agent processed Payroll payouts",
     "description": "Croquity Agent processed the Payroll iteration. \n        Evaluating 1 recipients for a total of 225.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "yuetfcb",
-    "timestamp": "2026-01-15T23:08:52.169Z",
+    "id": "6wrqcan",
+    "timestamp": "2026-01-15T23:22:48.973Z",
     "programId": 6,
     "type": "decision",
     "message": "Agent processed Bounty payouts",
     "description": "Croquity Agent processed the Bounty iteration. \n        Evaluating 1 recipients for a total of 180.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "mm4ozuy",
-    "timestamp": "2026-01-15T23:08:52.153Z",
+    "id": "zf3rh3a",
+    "timestamp": "2026-01-15T23:22:48.949Z",
     "programId": 5,
     "type": "decision",
     "message": "Agent processed Grant payouts",
     "description": "Croquity Agent processed the Grant iteration. \n        Evaluating 1 recipients for a total of 450.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "9ewgwrx",
-    "timestamp": "2026-01-15T23:08:52.137Z",
+    "id": "9aydy46",
+    "timestamp": "2026-01-15T23:22:48.932Z",
     "programId": 4,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
     "description": "Croquity Agent processed the Hackathon iteration. \n        Evaluating 3 recipients for a total of 810.00 USDC.e. \n        All selections verified against encoded policy rules for fraud and duplicate entries."
   },
   {
-    "id": "5qw1n86",
-    "timestamp": "2026-01-15T23:08:52.124Z",
+    "id": "ojvl57h",
+    "timestamp": "2026-01-15T23:22:48.916Z",
     "programId": 3,
     "type": "decision",
     "message": "Agent processed Hackathon payouts",
