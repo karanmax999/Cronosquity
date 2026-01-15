@@ -114,13 +114,52 @@ graph TD
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Deployment
 
 Croquity is built as a highly integrated triad:
 
 1.  **Smart Contracts (`/contracts`)**: The source of absolute truth on Cronos Testnet.
 2.  **AI-Steward Agent (`/agent`)**: The backend brain running the persistent orchestration loop.
 3.  **Institutional Frontend (`/frontend`)**: A premium Next.js 14 dashboard using **Framer Motion** and **Ethereal Shadow UI**.
+
+### Deployment Topology (Vercel + Render)
+
+How do the isolated Frontend and Agent talk? They don't. They both synchronize via the **Blockchain**.
+
+```mermaid
+graph TD
+    subgraph "Frontend Layer (Vercel)"
+        UI[Next.js App]
+        User[User Browser]
+        User -->|View Dashboard| UI
+    end
+
+    subgraph "Blockchain Layer (Cronos Testnet)"
+        RPC[RPC Node]
+        Registry[ProgramRegistry Contract]
+        Vault[ProgramVault Contract]
+        
+        RPC -->|Read State| Registry
+        RPC -->|Read Balance/Events| Vault
+    end
+
+    subgraph "Agent Layer (Render)"
+        Agent[Node.js Agent]
+        Network[Cronos Network]
+        
+        Agent -->|1. Poll State| Network
+        Agent -->|2. Detect Needs| Network
+        Agent -->|3. Execute Payout| Network
+    end
+
+    %% Connections
+    UI -- "Read Only via RPC" --> RPC
+    Network -- "Smart Contract Calls" --> RPC
+    
+    %% The "Connection"
+    Registry -. "Shared Source of Truth" .- Agent
+    UI -. "Displays Data From" .- Registry
+```
 
 ---
 
