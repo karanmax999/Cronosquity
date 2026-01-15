@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import * as http from "http";
 
 import { CronosAgent } from "./core/agent";
 import { runAgentOnce } from "./core/agent";
@@ -52,6 +53,15 @@ async function main() {
     printStartupConfig();
 
     console.log("Starting Croquity Program OS Agent...");
+
+    // Start a simple health-check server to keep Render happy
+    const port = process.env.PORT || 3000;
+    http.createServer((req, res) => {
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("Croquity AI Agent is alive\n");
+    }).listen(port, () => {
+        console.log(`✅ Health-check server listening on port ${port}`);
+    });
 
     // Initialize the agent with blockchain integration
     const agent = new CronosAgent();
