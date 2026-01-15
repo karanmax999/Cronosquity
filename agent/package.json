@@ -1,0 +1,21 @@
+{
+  "name": "croquity-agent",
+  "version": "1.0.0",
+  "description": "AI Agent for Croquity Treasury Steward",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@crypto.com/facilitator-client": "^1.0.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0",
+    "ethers": "^6.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+}

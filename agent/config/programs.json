@@ -1,0 +1,67 @@
+{
+  "bridgeConfig": {
+    "description": "Mapping between local Hardhat and Cronos Testnet",
+    "localNetwork": {
+      "name": "Hardhat Local",
+      "rpc": "http://127.0.0.1:8545",
+      "contracts": {
+        "ProgramRegistry": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+        "ProgramVault": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+        "MockUSDC": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      }
+    },
+    "cronosNetwork": {
+      "name": "Cronos Testnet",
+      "rpc": "https://evm-t3.cronos.org",
+      "contracts": {
+        "devUSDC.e": "0x...",
+        "Facilitator": "via @crypto.com/facilitator-client SDK"
+      }
+    },
+    "tokenMapping": {
+      "MockUSDC": {
+        "localAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "localDecimals": 18,
+        "cronosAddress": "devUSDC.e",
+        "cronosDecimals": 6,
+        "conversionNote": "Agent converts 18-decimal amounts to 6-decimal for Cronos"
+      }
+    }
+  },
+  "testPrograms": [
+    {
+      "programId": 0,
+      "name": "Test Bounty Program",
+      "type": "Bounty",
+      "localToken": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "initialBudget": "1000 MockUSDC (18 decimals)",
+      "payoutThreshold": "100 USDC equivalent",
+      "bridging": "Payouts > 100 USDC.e (6 decimals) are bridged to Cronos Testnet",
+      "testRecipient": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    }
+  ],
+  "payoutFlow": {
+    "step1_detect": "Agent's 60s loop loads active programs from ProgramRegistry",
+    "step2_plan": "Agent reads policy, scores, and plans payouts for eligible recipients",
+    "step3_execute_local": "Agent calls ProgramVault.executePayout() on Hardhat",
+    "step4_bridge": "If payout > 100 USDC.e, agent calls X402Facilitator.requestCrossChainPayout()",
+    "step5_cronos": "Facilitator SDK signs EIP-3009 authorization and settles on Cronos Testnet",
+    "step6_verify": "User verifies txHash on Cronos explorer: https://explorer.cronos.org/testnet/"
+  },
+  "decimalConversion": {
+    "description": "How the agent converts between local and Cronos amounts",
+    "example": {
+      "localAmount": "500 MockUSDC (with 18 decimals)",
+      "localAmountWei": "500000000000000000",
+      "cronosAmount": "500 devUSDC.e (with 6 decimals)",
+      "cronosAmountBase": "500000000",
+      "conversionMethod": "ethers.parseUnits(amount, 6).toString()"
+    }
+  },
+  "environment": {
+    "RPC_URL": "Local Hardhat for ProgramRegistry/Vault reads",
+    "CRONOS_RPC_URL": "https://evm-t3.cronos.org for X402 Facilitator writes",
+    "PAYOUT_PRIVATE_KEY": "Must hold devUSDC.e on Cronos Testnet for signing EIP-3009",
+    "FACILITATOR_NETWORK": "Set to 'testnet' for this configuration"
+  }
+}
