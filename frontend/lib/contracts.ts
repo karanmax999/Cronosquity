@@ -28,5 +28,16 @@ export const PROGRAM_VAULT_ABI = [
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": true, "internalType": "uint256", "name": "programId", "type": "uint256" },
+            { "indexed": true, "internalType": "address", "name": "recipient", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "indexed": false, "internalType": "string", "name": "reason", "type": "string" }
+        ],
+        "name": "PayoutExecuted",
+        "type": "event"
     }
 ] as const;

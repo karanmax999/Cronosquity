@@ -1,57 +1,92 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, CheckCircle, Clock } from "lucide-react";
-
-const LIVE_TRANSACTIONS = [
-    {
-        hash: "0x5ceb4fa23ec5e97ef0bfc7e23275e6ecf5ece3fbee33025bb8472488e576b661",
-        program: "Hackathon Q1",
-        amount: "300.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    },
-    {
-        hash: "0x6bbc28e3fa884ec803a65aaf51a7a665afbb3494e99c019bee7472195a194712",
-        program: "BioMed Grant",
-        amount: "500.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    },
-    {
-        hash: "0xaa6f9e73f3124bbbf622b691c4779260f72610b269b83bdeb016abd6b5e5ac12",
-        program: "Security Bounty",
-        amount: "200.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    },
-    {
-        hash: "0x4797ae999476e186ac35e9d743affb7008ed7f548c62f8ce718462db07adf8cb",
-        program: "Core Contributor",
-        amount: "250.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    },
-    {
-        hash: "0xf14377fadf5b67450e1a73708ae06221daad3da481271b4b3261e154cd08e18a",
-        program: "RWA Settlement",
-        amount: "750.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    },
-    {
-        hash: "0x09405df501e759d17c30b180cfa0aa7c9ec41ed7bd7b8cee454b189f333f89c0",
-        program: "Dev Tooling Grant",
-        amount: "450.00 USDC",
-        status: "CONFIRMED",
-        time: "Jan 14, 2025"
-    }
-];
-
+import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
+import { usePublicClient } from "wagmi";
+import { parseAbiItem, formatUnits } from "viem";
+import { PROGRAM_VAULT_ADDRESS } from "@/lib/contracts";
+
+// Hardcoded mapping for demo purposes since we don't fetch metadata yet
+const PROGRAM_NAMES: Record<number, string> = {
+    0: "Bounty Program",
+    1: "Hackathon Q1",
+    2: "BioMed Grant",
+    3: "Security Bounty",
+    4: "Core Contributor",
+    5: "RWA Settlement",
+    6: "Dev Tooling Grant",
+    7: "Payroll",
+};
+
+interface Transaction {
+    hash: string;
+    program: string;
+    amount: string;
+    status: string;
+    time: string;
+}
 
 export function X402TxHistory() {
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [loading, setLoading] = useState(true);
+    const publicClient = usePublicClient();
+
+    useEffect(() => {
+        if (!publicClient) return;
+
+        const fetchLogs = async () => {
+            try {
+                // Fetch last 1000 blocks or from deployment
+                // PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)
+                const logs = await publicClient.getLogs({
+                    address: PROGRAM_VAULT_ADDRESS,
+                    event: parseAbiItem('event PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)'),
+                    fromBlock: 'earliest', // query from start for demo
+                    toBlock: 'latest'
+                });
+
+                // Process logs into transactions (reverse chronological)
+                const txs = await Promise.all(
+                    logs.reverse().slice(0, 10).map(async (log) => {
+                        const block = await publicClient.getBlock({ blockNumber: log.blockNumber });
+                        const date = new Date(Number(block.timestamp) * 1000).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                        });
+
+                        const programId = Number(log.args.programId);
+                        const amount = log.args.amount ? formatUnits(log.args.amount, 6) : "0"; // USDC.e has 6 decimal places
+
+                        return {
+                            hash: log.transactionHash,
+                            program: PROGRAM_NAMES[programId] || `Program #${programId}`,
+                            amount: `${Number(amount).toFixed(2)} USDC.e`,
+                            status: "CONFIRMED",
+                            time: date
+                        };
+                    })
+                );
+
+                setTransactions(txs);
+                setLoading(false);
+            } catch (error) {
+                console.error("Failed to fetch logs:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchLogs();
+
+        // Optional: Set up polling or watch event here for live updates
+        const interval = setInterval(fetchLogs, 15000); // Poll every 15s for new blocks
+
+        return () => clearInterval(interval);
+
+    }, [publicClient]);
+
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between px-2">
@@ -61,7 +96,7 @@ export function X402TxHistory() {
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
                     </div>
                     <h3 className="text-sm font-black text-white/90 uppercase tracking-[0.2em]">
-                        Live Execution Log <span className="text-white/30 font-medium ml-2">[{LIVE_TRANSACTIONS.length} Confirmations]</span>
+                        Live Execution Log <span className="text-white/30 font-medium ml-2">[{transactions.length} On-Chain]</span>
                     </h3>
                 </div>
                 <Badge variant="outline" className="text-glow-purple border-glow-purple/30 bg-glow-purple/10 font-black tracking-widest text-[10px]">
@@ -81,43 +116,57 @@ export function X402TxHistory() {
                         </TableRow>
                     </TableHeader>
                     <TableBody className="bg-black/20 font-mono">
-                        {LIVE_TRANSACTIONS.map((tx, idx) => (
-                            <motion.tr
-                                key={tx.hash}
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="border-white/5 hover:bg-white/[0.03] transition-colors group"
-                            >
-                                <TableCell className="text-[11px] text-white/40 group-hover:text-glow-purple transition-colors pl-8">
-                                    {tx.hash.slice(0, 14)}...{tx.hash.slice(-12)}
+                        {loading && transactions.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={5} className="text-center py-8 text-white/30">
+                                    Loading blockchain data...
                                 </TableCell>
-                                <TableCell className="text-white font-bold text-xs uppercase tracking-tight">
-                                    {tx.program}
+                            </TableRow>
+                        ) : transactions.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={5} className="text-center py-8 text-white/30">
+                                    No payouts found on Cronos Testnet yet.
                                 </TableCell>
-                                <TableCell className="text-white/90 font-black text-xs">
-                                    {tx.amount}
-                                </TableCell>
-                                <TableCell>
-                                    <div className="flex items-center gap-2 bg-emerald-400/5 w-fit px-3 py-1 rounded-full border border-emerald-400/20">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                                        <span className="text-emerald-400 text-[9px] font-black tracking-widest uppercase">Confirmed</span>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-right pr-8">
-                                    <a
-                                        href={`https://explorer.cronos.org/testnet/tx/${tx.hash}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-[10px] font-black text-white/30 hover:text-white transition-all uppercase tracking-widest bg-white/5 px-3 py-1.5 rounded-lg border border-white/5 hover:border-white/20"
-                                    >
-                                        Inspect
-                                        <ExternalLink className="w-3 h-3" />
-                                    </a>
-                                </TableCell>
-                            </motion.tr>
-                        ))}
+                            </TableRow>
+                        ) : (
+                            transactions.map((tx, idx) => (
+                                <motion.tr
+                                    key={`${tx.hash}-${idx}`}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.05 }}
+                                    className="border-white/5 hover:bg-white/[0.03] transition-colors group"
+                                >
+                                    <TableCell className="text-[11px] text-white/40 group-hover:text-glow-purple transition-colors pl-8">
+                                        {tx.hash.slice(0, 14)}...{tx.hash.slice(-12)}
+                                    </TableCell>
+                                    <TableCell className="text-white font-bold text-xs uppercase tracking-tight">
+                                        {tx.program}
+                                    </TableCell>
+                                    <TableCell className="text-white/90 font-black text-xs">
+                                        {tx.amount}
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex items-center gap-2 bg-emerald-400/5 w-fit px-3 py-1 rounded-full border border-emerald-400/20">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                                            <span className="text-emerald-400 text-[9px] font-black tracking-widest uppercase">Confirmed</span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-right pr-8">
+                                        <a
+                                            href={`https://explorer.cronos.org/testnet/tx/${tx.hash}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 text-[10px] font-black text-white/30 hover:text-white transition-all uppercase tracking-widest bg-white/5 px-3 py-1.5 rounded-lg border border-white/5 hover:border-white/20"
+                                        >
+                                            Inspect
+                                            <ExternalLink className="w-3 h-3" />
+                                        </a>
+                                    </TableCell>
+                                </motion.tr>
+                            ))
+                        )}
                     </TableBody>
                 </Table>
             </div>
