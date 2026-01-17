@@ -41,10 +41,13 @@ export function X402TxHistory() {
             try {
                 // Fetch last 1000 blocks or from deployment
                 // PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)
+                const currentBlock = await publicClient.getBlockNumber();
+                const fromBlock = currentBlock > 2000n ? currentBlock - 2000n : 0n;
+
                 const logs = await publicClient.getLogs({
                     address: PROGRAM_VAULT_ADDRESS,
                     event: parseAbiItem('event PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)'),
-                    fromBlock: 'earliest', // query from start for demo
+                    fromBlock: fromBlock,
                     toBlock: 'latest'
                 });
 
