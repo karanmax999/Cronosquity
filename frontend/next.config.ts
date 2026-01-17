@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-eval' 'unsafe-inline' https:;",
               "style-src 'self' 'unsafe-inline';",
               "img-src 'self' blob: data: https:;",
-              "font-src 'self' data:;",
+              "font-src 'self' data: https://r2cdn.perplexity.ai;",
               "connect-src 'self' https: wss:;", // Allow Web3 connections
             ].join(" ").replace(/\s{2,}/g, " ").trim(),
           },
