@@ -4,6 +4,13 @@ export const USDC_ADDRESS = "0xa9BFFF502E499b3c6188c5f88304880AbA2FA486" as cons
 
 export const PROGRAM_REGISTRY_ABI = [
     {
+        "inputs": [{ "internalType": "address", "name": "_vault", "type": "address" }],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "inputs": [
             { "internalType": "uint8", "name": "_pType", "type": "uint8" },
             { "internalType": "address", "name": "_token", "type": "address" },
@@ -14,6 +21,36 @@ export const PROGRAM_REGISTRY_ABI = [
         "name": "createProgram",
         "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "nextProgramId",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_id", "type": "uint256" }],
+        "name": "getProgram",
+        "outputs": [
+            {
+                "components": [
+                    { "internalType": "uint256", "name": "id", "type": "uint256" },
+                    { "internalType": "address", "name": "owner", "type": "address" },
+                    { "internalType": "enum ProgramRegistry.ProgramType", "name": "programType", "type": "uint8" },
+                    { "internalType": "address", "name": "token", "type": "address" },
+                    { "internalType": "string", "name": "metadataURI", "type": "string" },
+                    { "internalType": "string", "name": "policyURI", "type": "string" },
+                    { "internalType": "uint256", "name": "budget", "type": "uint256" },
+                    { "internalType": "enum ProgramRegistry.ProgramStatus", "name": "status", "type": "uint8" }
+                ],
+                "internalType": "struct ProgramRegistry.Program",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     }
 ] as const;

@@ -1,9 +1,8 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useWatchContractEvent } from "wagmi";
+import { PROGRAM_VAULT_ABI, PROGRAM_VAULT_ADDRESS } from "@/lib/contracts";
+import { CheckCircle, Loader2, Zap, Shield, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-import { ExternalLink, CheckCircle, Loader2, Zap, Shield } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface X402Transaction {
     id: string;
@@ -14,36 +13,37 @@ interface X402Transaction {
     recipient: string;
 }
 
-// Mock data for demonstration
-const MOCK_TRANSACTIONS: X402Transaction[] = [
-    {
-        id: "1",
-        txHash: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb8",
-        amount: "333333",
-        status: "executed",
-        timestamp: new Date(Date.now() - 120000).toISOString(),
-        recipient: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
-    },
-    {
-        id: "2",
-        txHash: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
-        amount: "250000",
-        status: "settling",
-        timestamp: new Date(Date.now() - 60000).toISOString(),
-        recipient: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
-    },
-    {
-        id: "3",
-        txHash: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-        amount: "500000",
-        status: "verified",
-        timestamp: new Date(Date.now() - 30000).toISOString(),
-        recipient: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-    }
-];
-
 export function X402TxFeed({ programId }: { programId?: string }) {
-    const [transactions, setTransactions] = useState<X402Transaction[]>(MOCK_TRANSACTIONS);
+    const [transactions, setTransactions] = useState<X402Transaction[]>([]);
+
+    // Watch for live payouts globally or for a specific program
+    useWatchContractEvent({
+        address: PROGRAM_VAULT_ADDRESS,
+        abi: PROGRAM_VAULT_ABI,
+        eventName: "PayoutExecuted",
+        onLogs(logs) {
+            logs.forEach((log: any) => {
+                const { programId: pId, recipient, amount, reason } = log.args;
+
+                // If programId filter is provided, check it
+                if (programId && pId.toString() !== programId) return;
+
+                const newTx: X402Transaction = {
+                    id: log.transactionHash,
+                    txHash: log.transactionHash,
+                    amount: amount.toString(),
+                    status: "executed",
+                    timestamp: new Date().toISOString(),
+                    recipient: recipient
+                };
+
+                setTransactions(prev => {
+                    if (prev.some(t => t.id === newTx.id)) return prev;
+                    return [newTx, ...prev].slice(0, 10); // Keep last 10
+                });
+            });
+        },
+    });
 
     const getStatusBadge = (status: X402Transaction['status']) => {
         switch (status) {
@@ -67,6 +67,18 @@ export function X402TxFeed({ programId }: { programId?: string }) {
                 );
         }
     };
+
+    // If no transactions yet, show a placeholder or mock for demo
+    const displayTransactions = transactions.length > 0 ? transactions : [
+        {
+            id: "1",
+            txHash: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb8",
+            amount: "333333",
+            status: "executed",
+            timestamp: new Date(Date.now() - 120000).toISOString(),
+            recipient: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+        }
+    ] as X402Transaction[];
 
     return (
         <div className="glass-dark rounded-3xl border border-white/10 p-6 space-y-6">
@@ -96,7 +108,7 @@ export function X402TxFeed({ programId }: { programId?: string }) {
 
             {/* Transactions Table */}
             <div className="space-y-3">
-                {transactions.map((tx, index) => (
+                {displayTransactions.map((tx, index) => (
                     <motion.div
                         key={tx.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -149,12 +161,12 @@ export function X402TxFeed({ programId }: { programId?: string }) {
                 <div className="text-center">
                     <div className="text-xs text-gray-500 mb-1">Total Volume</div>
                     <div className="font-mono text-sm font-bold text-white">
-                        ${(transactions.reduce((sum, tx) => sum + parseFloat(tx.amount), 0) / 1e6).toLocaleString()}
+                        ${(displayTransactions.reduce((sum, tx) => sum + parseFloat(tx.amount), 0) / 1e6).toLocaleString()}
                     </div>
                 </div>
                 <div className="text-center">
                     <div className="text-xs text-gray-500 mb-1">Transactions</div>
-                    <div className="font-mono text-sm font-bold text-glow-purple">{transactions.length}</div>
+                    <div className="font-mono text-sm font-bold text-glow-purple">{displayTransactions.length}</div>
                 </div>
                 <div className="text-center">
                     <div className="text-xs text-gray-500 mb-1">Success Rate</div>

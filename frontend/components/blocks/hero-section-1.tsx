@@ -33,15 +33,30 @@ const transitionVariants = {
 export function HeroSection() {
     return (
         <main className="overflow-hidden bg-background text-foreground relative">
-            {/* Dynamic Background Layer */}
+            {/* Multi-Layer Background System */}
             <div className="absolute inset-0 -z-30 h-screen w-full overflow-hidden">
-                <EtheralShadow
-                    color="rgba(168, 85, 247, 0.2)"
-                    animation={{ scale: 80, speed: 40 }}
-                    noise={{ opacity: 0.5, scale: 1.0 }}
-                    sizing="fill"
-                    className="opacity-60"
+                {/* Layer 1: Static Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                    style={{
+                        backgroundImage: 'url(/hero-bg.png)',
+                        backgroundBlendMode: 'overlay'
+                    }}
                 />
+
+                {/* Layer 2: Gradient Overlay for Depth */}
+                <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
+
+                {/* Layer 3: Animated Ethereal Shadow */}
+                <EtheralShadow
+                    color="rgba(168, 85, 247, 0.25)"
+                    animation={{ scale: 80, speed: 40 }}
+                    noise={{ opacity: 0.6, scale: 1.0 }}
+                    sizing="fill"
+                    className="opacity-70"
+                />
+
+                {/* Layer 4: Bottom Fade to Content */}
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent z-10" />
             </div>
 

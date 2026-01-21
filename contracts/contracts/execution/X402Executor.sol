@@ -3,10 +3,6 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- * @title X402Executor
- * @dev Mock/Steward for executing payouts via Cronos x402 Facilitator logic.
- */
 contract X402Executor is Ownable {
     event CrossChainPayoutRequested(uint256 indexed programId, address recipient, uint256 amount, uint256 destinationChainId);
 

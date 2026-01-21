@@ -3,7 +3,8 @@
 > **🏆 Cronos x402 Paytech Hackathon 2026**  
 > Main Track: AI-Powered Treasury Automation | 6 Live x402 Transactions Executed
 
-**The Problem:** DAOs waste 80% of treasury time on routine payouts. Manual processes = bottlenecks.  
+**The Problem:** DAOs waste 80% of treasury time on routine payouts. Manual processes = bottlenecks. 
+
 **Our Solution:** AI agents + x402 gasless rails = 95% capital efficiency + zero manual overhead.
 
 ***

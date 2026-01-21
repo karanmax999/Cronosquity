@@ -12,7 +12,7 @@ export function Navbar() {
 
     const menuItems = [
         { name: 'Programs', href: '/programs' },
-        { name: 'Agents', href: '/agents' },
+        { name: 'Agent Hub', href: '/agent-hub' },
         { name: 'Governance', href: '/governance' },
         { name: 'Docs', href: '/docs' },
     ];

@@ -55,7 +55,7 @@ async function main() {
     console.log("Starting Croquity Program OS Agent...");
 
     // Start a simple health-check server to keep Render happy
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3001;
     http.createServer((req, res) => {
         res.writeHead(200, { "Content-Type": "text/plain" });
         res.end("Croquity AI Agent is alive\n");

@@ -22,7 +22,7 @@ const PROGRAM_NAMES: Record<number, string> = {
 };
 
 interface Transaction {
-    hash: string;
+    hash: `0x${string}`;
     program: string;
     amount: string;
     status: string;
@@ -39,44 +39,57 @@ export function X402TxHistory() {
 
         const fetchLogs = async () => {
             try {
-                // Fetch last 1000 blocks or from deployment
-                // PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)
+                // Cronos RPC has a max 2000 block range limit
+                // Use 1000 blocks to be very safe
                 const currentBlock = await publicClient.getBlockNumber();
-                const fromBlock = currentBlock > 2000n ? currentBlock - 2000n : 0n;
+                const SAFE_BLOCK_RANGE = 1000n;
+                const fromBlock = currentBlock > SAFE_BLOCK_RANGE ? currentBlock - SAFE_BLOCK_RANGE : 0n;
+
+                console.log(`[X402TxHistory] Syncing logs: range ${fromBlock} to ${currentBlock} (${currentBlock - fromBlock} blocks)`);
 
                 const logs = await publicClient.getLogs({
                     address: PROGRAM_VAULT_ADDRESS,
                     event: parseAbiItem('event PayoutExecuted(uint256 indexed programId, address indexed recipient, uint256 amount, string reason)'),
                     fromBlock: fromBlock,
-                    toBlock: 'latest'
+                    toBlock: currentBlock
                 });
+
+                console.log(`[X402TxHistory] Found ${logs.length} logs`);
 
                 // Process logs into transactions (reverse chronological)
                 const txs = await Promise.all(
                     logs.reverse().slice(0, 10).map(async (log) => {
-                        const block = await publicClient.getBlock({ blockNumber: log.blockNumber });
-                        const date = new Date(Number(block.timestamp) * 1000).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                        });
+                        try {
+                            const block = await publicClient.getBlock({ blockNumber: log.blockNumber });
+                            const date = new Date(Number(block.timestamp) * 1000).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                            });
 
-                        const programId = Number(log.args.programId);
-                        const amount = log.args.amount ? formatUnits(log.args.amount, 6) : "0"; // USDC.e has 6 decimal places
+                            const programId = Number(log.args.programId);
+                            const amount = log.args.amount ? formatUnits(log.args.amount, 6) : "0"; // USDC.e has 6 decimal places
 
-                        return {
-                            hash: log.transactionHash,
-                            program: PROGRAM_NAMES[programId] || `Program #${programId}`,
-                            amount: `${Number(amount).toFixed(2)} USDC.e`,
-                            status: "CONFIRMED",
-                            time: date
-                        };
+                            return {
+                                hash: log.transactionHash,
+                                program: PROGRAM_NAMES[programId] || `Program #${programId}`,
+                                amount: `${Number(amount).toFixed(2)} USDC.e`,
+                                status: "CONFIRMED",
+                                time: date
+                            };
+                        } catch (err) {
+                            console.error("Error processing log:", err);
+                            return null;
+                        }
                     })
                 );
 
-                setTransactions(txs);
+                // Filter out any null entries and set state with strict typing
+                const validTxs = txs.filter((tx): tx is Transaction => tx !== null);
+                setTransactions(validTxs);
                 setLoading(false);
             } catch (error) {
                 console.error("Failed to fetch logs:", error);
+                // Set loading to false even on error so UI doesn't hang
                 setLoading(false);
             }
         };
